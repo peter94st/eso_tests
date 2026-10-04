@@ -23,6 +23,7 @@ export function Home () {
         >
             <img src={logo} alt="" style={{
                 width: '25%',
+                minWidth: 250,
                 height: 'auto'
             }} />
             <h1>

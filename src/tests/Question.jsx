@@ -28,7 +28,7 @@ export function Question ({ question, selectedAnswer, onAnswer }) {
                 style={{ width: '100%' }}
             >
                 <Space
-                    direction="vertical"
+                    orientation="vertical"
                     size="middle"
                     style={{ width: '100%' }}
                 >

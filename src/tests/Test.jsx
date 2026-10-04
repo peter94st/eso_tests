@@ -7,6 +7,15 @@ import { Question } from "./Question";
 export function Test ({ questions, timeLeft, setFinished, answers, setAnswers }) {
     const [currentQuestion, setCurrentQuestion] = useState(0)
 
+    const nextQuestion = () => {
+        if(currentQuestion === questions.length -1 ) {
+            setFinished(true)
+            return
+        }
+
+        setCurrentQuestion(prev => prev + 1)
+    }
+
     const handleAnswer = (answer) => {
         setAnswers(prev => {
             const newAnswers = [...prev]
@@ -14,12 +23,7 @@ export function Test ({ questions, timeLeft, setFinished, answers, setAnswers })
             return newAnswers
         })
 
-        if(currentQuestion === questions.length -1 ) {
-            setFinished(true)
-            return
-        }
-
-        setCurrentQuestion(currentQuestion + 1)
+        nextQuestion()
     }
 
     return (
@@ -41,15 +45,19 @@ export function Test ({ questions, timeLeft, setFinished, answers, setAnswers })
                     format={() => `${currentQuestion + 1} / ${questions.length}`}
                 />
                 <Question
+                    key={`q${questions[currentQuestion].id}`}
                     question={questions[currentQuestion]}
                     selectedAnswer={answers[currentQuestion]}
                     onAnswer={handleAnswer}
                 />
                 <Space>
-                    <Button onClick={() => setCurrentQuestion(currentQuestion - 1)}>
+                    <Button 
+                        onClick={() => setCurrentQuestion(prev => prev - 1)}
+                        disabled={currentQuestion === 0}
+                    >
                         Anterior
                     </Button>
-                    <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
+                    <Button onClick={nextQuestion}>
                         Siguiente
                     </Button>
                 </Space>
