@@ -167,3 +167,21 @@ code {
 .red {
   color: red
 }
+
+.correctAnswer {
+    background-color: #f6ffed !important;
+    border-color: #52c41a !important;
+    color: #389e0d !important;
+}
+
+.correct {
+  background-color: #f6ffed !important;
+  border-color: rgb(22, 119, 255) !important;
+  color: rgb(22, 119, 255) !important;
+}
+
+.incorrectAnswer {
+    background-color: #fff2f0 !important;
+    border-color: #ff4d4f !important;
+    color: #cf1322 !important;
+}

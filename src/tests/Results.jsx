@@ -1,10 +1,13 @@
 import { Card, Button, Progress, Flex } from "antd";
+import { Answers } from "./Answers";
 import { useNavigate } from "react-router-dom";
 
 import { getResultMessage } from "../helper/helpers";
+import { useState } from "react";
 
 export function Results ({ questions, answers }) {
     const navigate = useNavigate()
+    const [ showResults, setShowResults ] = useState(false)
 
     const correctAnswers = questions.filter(
         (question, index) => question.answer === answers[index]
@@ -28,7 +31,8 @@ export function Results ({ questions, answers }) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    gap: 8
             }
             }}
         >
@@ -50,9 +54,21 @@ export function Results ({ questions, answers }) {
                     {result.title}
                 </h3>
             </Flex>
-            <Button>Ver preguntas</Button>
+            <Button
+                onClick={() => setShowResults(true)}
+            >
+                Ver preguntas
+            </Button>
             <Button onClick={() => navigate('/subjects')}>Volver</Button>
+            {
+                showResults &&
+                <Answers
+                    questions={questions}
+                    answers={answers}
+                />
+            }
         </Card>
+            
         </>
     )
 }
